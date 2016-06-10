@@ -1,15 +1,19 @@
-Example
-#######
+NTP client
+##########
 
-An (empty) example Ansible role complete with working tests out of the box. For
-more information read the `blog post
-<https://www.shore.co.il/blog/ansible-example-role/>`_.
+An Ansible role for installing and configuring an NTP client.
 
 Requirements
 ------------
 
 - `Ansible 2.0 or later <https://www.ansible.com/>`_.
-- `OpenBSD 5.9 or later <http://www.openbsd.org/>`_.
+- Supported OSes:
+  - `OpenBSD 5.9 <http://www.openbsd.org/>`_ (most versions should also work
+    but aren't tested).
+  - `Debian Jessie <http://www.debian.org/>`_ (most versions should also work
+    but aren't tested).
+  - `Ubuntu Trusty <http://www.ubuntu.com/>`_ (most versions should also work
+    but aren't tested).
 
 Role Variables
 --------------
