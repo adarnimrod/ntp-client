@@ -1,0 +1,3 @@
+{% for i in range(4) %}
+server {{ i }}.{{ ntp_pool[ansible_os_family] }}
+{% endfor %}

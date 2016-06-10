@@ -1,2 +1,14 @@
 ---
-# vars file for ansible-role-example
+# vars file for ansible-role-ntp-client
+
+ntpd_conf:
+    OpenBSD: /etc/ntpd.conf
+    Debian: /etc/openntpd/ntp.conf
+
+ntp_pool:
+    OpenBSD: pool.ntp.org
+    Debian: debian.pool.ntp.org
+
+ntpd_service:
+    OpenBSD: ntpd
+    Debian: openntpd

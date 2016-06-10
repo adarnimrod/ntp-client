@@ -1,7 +1,41 @@
 ---
-# tasks file for ansible-role-example
+# tasks file for ansible-role-ntp-client
 
-- assert:
-    that:
-        - ansible_os_family == 'OpenBSD'
-        - ansible_distribution_release == '5.9'
+- name: Assert
+  assert:
+    that: ansible_os_family in [ 'Debian', 'OpenBSD' ]
+
+- name: apt install
+  when: ansible_pkg_mgr == 'apt' and not ansible_service_mgr == 'systemd'
+  apt:
+    name: openntpd
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Configure OpenNTPD
+  when: not ansible_service_mgr == 'systemd'
+  template:
+    src: ntpd.conf.j2
+    dest: '{{ ntpd_conf[ansible_os_family] }}'
+    owner: root
+    group: 0
+    mode: 0o0644
+  notify:
+  - Restart ntpd
+
+- name: Configure systemd-timesyncd
+  when: ansible_service_mgr == 'systemd'
+  lineinfile:
+    dest: /etc/systemd/timesyncd.conf
+    line: 'NTP=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org'
+    regexp: '^NTP='
+    state: present
+  notify:
+  - 'Restart systemd-timesyncd'
+
+- name: Enable service
+  service:
+    name: '{{ "systemd-timesyncd" if ansible_service_mgr == "systemd" else ntpd_service[ansible_os_family] }}'
+    enabled: yes
+    state: started
