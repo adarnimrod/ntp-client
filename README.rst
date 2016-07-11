@@ -6,19 +6,12 @@ An Ansible role for installing and configuring an NTP client.
 Requirements
 ------------
 
-- `Ansible 2.0 or later <https://www.ansible.com/>`_.
-- Supported OSes:
-  - `OpenBSD 5.9 <http://www.openbsd.org/>`_ (most versions should also work
-    but aren't tested).
-  - `Debian Jessie <http://www.debian.org/>`_ (most versions should also work
-    but aren't tested).
-  - `Ubuntu Trusty <http://www.ubuntu.com/>`_ (most versions should also work
-    but aren't tested).
+See :code:`meta/main.yml` and assertions at top of :code:`tasks/main.yml`.
 
 Role Variables
 --------------
 
-None.
+See :code:`defaults/main.yml`.
 
 Dependencies
 ------------
