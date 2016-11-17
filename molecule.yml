@@ -1,12 +1,10 @@
 ---
 ansible:
-  verbose: v
+  verbose: vv
   playbook: tests/playbook.yml
   diff: True
-
-molecule:
-  testinfra_dir: tests
-  ansible_config_template: ansible.cfg
+  config_file: ../ansible.cfg
+  requirements_file: tests/requirements.yml
 
 vagrant:
   providers:
@@ -18,7 +16,7 @@ vagrant:
   - name: debian
     box: debian/jessie64
   - name: ubuntu
-    box: ubuntu/trusty64
+    box: ubuntu/xenial64
   instances:
   - name: ansible-role-ntp-client
     options:

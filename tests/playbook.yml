@@ -1,7 +1,11 @@
 ---
 - hosts: ansible-role-ntp-client-openbsd
   gather_facts: false
-  roles: [ role: ansible-role-openbsd-bootstrap ]
+  roles: [openbsd_bootstrap]
+
+- hosts: ansible-role-ntp-client-ubuntu
+  gather_facts: false
+  roles: [debian_bootstrap]
 
 - hosts: all
-  roles: [ role: ansible-role-ntp-client ]
+  roles: [ansible-role-ntp-client]
