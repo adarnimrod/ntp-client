@@ -1,11 +1,13 @@
 ---
-- hosts: ansible-role-ntp-client-openbsd
+- hosts: ntp-client-openbsd
   gather_facts: false
-  roles: [openbsd_bootstrap]
+  roles: [adarnimrod.openbsd-bootstrap]
 
-- hosts: ansible-role-ntp-client-ubuntu
+- hosts: ntp-client-xenial
   gather_facts: false
-  roles: [debian_bootstrap]
+  roles: [adarnimrod.debian-bootstrap]
 
 - hosts: all
-  roles: [ansible-role-ntp-client]
+  strategy: free
+  roles:
+    - role: ntp-client

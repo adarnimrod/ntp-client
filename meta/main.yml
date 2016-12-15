@@ -1,6 +1,6 @@
 galaxy_info:
   author: Nimrod Adar
-  description: An Ansible role for configuring NTP time syncronization.
+  description: Provision an NTP client
   company: Shore technologies
   license: MIT
   min_ansible_version: 2.0

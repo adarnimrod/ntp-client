@@ -1,5 +1,5 @@
 ---
-# vars file for ansible-role-ntp-client
+# vars file for ntp-client
 
 ntpd_conf:
     OpenBSD: /etc/ntpd.conf

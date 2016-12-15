@@ -1,5 +1,6 @@
 ---
-# tasks file for ansible-role-ntp-client
+# tasks file for ntp-client
+
 - name: Assertions
   assert:
     that: ansible_os_family in [ 'Debian', 'OpenBSD' ]

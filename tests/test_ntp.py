@@ -1,12 +1,12 @@
-def test_ntp(Service, Ansible):
-    if Ansible('setup')['ansible_facts']['ansible_service_mgr'] == 'systemd':
-        service = Service('systemd-timesyncd')
-    elif Ansible('setup')['ansible_facts']['ansible_os_family'] == 'Debian':
-        service = Service('openntpd')
-    elif Ansible('setup')['ansible_facts']['ansible_os_family'] == 'OpenBSD':
-        service = Service('ntpd')
-    assert service.is_running
+from testinfra.utils.ansible_runner import AnsibleRunner
+
+testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
+
+
+def test_ntp(Service):
+    assert Service('systemd-timesyncd').is_running or Service(
+        'ntpd').is_running
     try:
-        assert service.is_enabled
+        Service('systemd-timesyncd').is_enabled or Service('ntpd').is_enabled
     except NotImplementedError:
         pass
