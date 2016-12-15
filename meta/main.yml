@@ -12,5 +12,8 @@ galaxy_info:
   - name: Debian
     versions:
     - jessie
+  - name: Ubuntu
+    versions:
+    - trusty
   galaxy_tags: [ ntp ]
 dependencies: []
