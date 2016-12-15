@@ -3,7 +3,10 @@
 
 - name: Assertions
   assert:
-    that: ansible_os_family in [ 'Debian', 'OpenBSD' ]
+    that:
+        - ansible_os_family in ntpd_conf
+        - ansible_os_family in ntp_pool
+        - ansible_os_family in ntpd_service
 
 - name: apt install
   when: ansible_pkg_mgr == 'apt' and not ansible_service_mgr == 'systemd'

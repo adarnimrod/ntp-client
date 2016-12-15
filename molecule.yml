@@ -32,17 +32,6 @@ vagrant:
 
 docker:
   containers:
-  - name: ntp-client-jessie
-    image: debian
-    image_version: jessie
-    command: /sbin/init
-    privileged: True
-    volume_mounts:
-      - /sys/fs/cgroup:/sys/fs/cgroup
-      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-    environment:
-        DEBIAN_FRONTEND: noninteractive
-        container: docker
   - name: ntp-client-trusty
     image: ubuntu-upstart
     image_version: trusty
